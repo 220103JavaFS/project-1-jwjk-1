@@ -1,4 +1,4 @@
 package com.revature.repos;
 
-public class TestReimbursementDAOImpl g{
+public class TestReimbursementDAOImpl {
 }
