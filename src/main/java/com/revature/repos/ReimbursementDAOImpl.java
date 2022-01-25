@@ -11,7 +11,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
     @Override
-    public Reimbursement findAuthor(int id) {
+    public Reimbursement findAuthor( int id) {
         return null;
     }
 
@@ -22,6 +22,16 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
     @Override
     public boolean addStatus(int Status) {
+        return false;
+    }
+
+    @Override
+    public boolean addAmount(float reimbursementAmount) {
+        return false;
+    }
+
+    @Override
+    public boolean addType(int reimbursementTypeId) {
         return false;
     }
 }
