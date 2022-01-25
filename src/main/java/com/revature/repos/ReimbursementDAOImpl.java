@@ -11,14 +11,10 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
     @Override
-    public Reimbursement findAuthor( int id) {
-        return null;
-    }
+    public int findAuthor(int id) { return id; }
 
     @Override
-    public boolean addDescription(String description) {
-        return false;
-    }
+    public boolean addDescription (String description) {return true; }
 
     @Override
     public boolean addStatus(int Status) {
@@ -27,11 +23,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
     @Override
     public boolean addAmount(float reimbursementAmount) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean addType(int reimbursementTypeId) {
-        return false;
+        return true;
     }
 }

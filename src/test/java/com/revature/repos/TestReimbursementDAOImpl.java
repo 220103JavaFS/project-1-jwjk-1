@@ -26,29 +26,31 @@ public class TestReimbursementDAOImpl {
         assertNull(reimbursementDAO.findAll());
     }
 
+  //  @Test
+  //  void testFindAuthor() {
+  //  assertEquals(reimbursementDAO.findAuthor(testReimbursement.getReimbursementAuthor()));
+  //  }
+
     @Test
-    void testFindAuthor() {
-        assertEquals(testReimbursement, reimbursementDAO.findAuthor(testReimbursement.getReimbursementAuthor()));
+    void testAddDescriptionTrue() {
+        assertTrue(reimbursementDAO.addDescription(testReimbursement.getReimbursementDescription()));
     }
 
-//
-//
-//    public boolean addDescription(String reimbursementDescription) {
-//        return false;
-//    }
-//
-//
-//    public boolean addStatus(int reimbursementStatusId) {
-//        return false;
-//    }
-//
-//
-//    public boolean addAmount(float reimbursementAmount) {
-//        return false;
-//    }
-//
-//
-//    public boolean addType(int reimbursementTypeId) {
-//        return false;
-//    }
+    @Test
+    void testAddStatus() {
+        assertFalse(reimbursementDAO.addStatus(testReimbursement.getReimbursementStatusId()));
+    }
+
+    @Test
+    void testAddAmount() {
+        assertTrue(reimbursementDAO.addAmount(testReimbursement.getReimbursementAmount()));
+        }
+
+     @Test
+    void addType(){
+        assertTrue(reimbursementDAO.addType(testReimbursement.getReimbursementTypeId()));
+     }
+
 }
+
+
