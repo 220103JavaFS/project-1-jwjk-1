@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Reimbursement {
 
     private int reimbursementId;
-    private int reimbursementAmount;
+    private float reimbursementAmount;
     private int reimbursementSubmitted;
     private int reimbursementResolved;
     private String reimbursementDescription;
@@ -19,7 +19,7 @@ public class Reimbursement {
 
     }
 
-    public Reimbursement(int reimbursementId, int reimbursementAmount, int reimbursementSubmitted,
+    public Reimbursement(int reimbursementId, float reimbursementAmount, int reimbursementSubmitted,
                          int reimbursementResolved, String reimbursementDescription, int reimbursementReceipt,
                          int reimbursementAuthor, int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
         this.reimbursementId = reimbursementId;
@@ -42,11 +42,11 @@ public class Reimbursement {
         this.reimbursementId = reimbursementId;
     }
 
-    public int getReimbursementAmount() {
+    public float getReimbursementAmount() {
         return reimbursementAmount;
     }
 
-    public void setReimbursementAmount(int reimbursementAmount) {
+    public void setReimbursementAmount(float reimbursementAmount) {
         this.reimbursementAmount = reimbursementAmount;
     }
 
