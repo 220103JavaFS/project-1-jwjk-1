@@ -1,0 +1,71 @@
+DROP TABLE IF EXISTS reimbursement; 
+
+CREATE TABLE reimbursement(
+reimbursement_id INT PRIMARY KEY,
+reimbursement_amount INT,
+reimbursement_submitted TIMESTAMP,
+reimbursement_resolved TIMESTAMP,
+reimbursement_description VARCHAR(250),
+reimbursement_receipt INT,
+reimbursement_author INT,
+reimbursement_resolver INT,
+reimbursement_status_id INT,
+reimbursement_type_id INT
+);
+
+INSERT INTO reimbursement (reimbursement_id, reimbursement_amount, reimbursement_submitted, reimbursement_resolved, reimbursement_description, reimbursement_receipt, reimbursement_author, reimbursement_resolver, reimbursement_status_id, reimbursement_type_id)
+	VALUES(1, 5, '2022/01/21 07:40:00', '2022/01/21 07:45:00', 'coffee on my way to a story', 15000, 2, 1, 2, 1),
+	(2, 500, '2022/01/17 09:00:00', '2022/01/21 16:59:00', 'car rental to report on the meteroplis football playoffs game', 124532, 3, 1, 1, 2);
+
+DROP TABLE IF EXISTS users
+
+CREATE TABLE users(
+	user_id INT PRIMARY KEY,
+	username VARCHAR(50),
+	passwords VARCHAR(50),
+	user_first_name VARCHAR(100),
+	user_last_name VARCHAR(100),
+	user_email VARCHAR(150),
+	user_role_id INT
+);
+
+INSERT INTO users(user_id, username, passwords, user_first_name, user_last_name, user_email, user_role_id)
+	VALUES( 1, 'PWhite', 'planetmanager156', 'perry', 'white', 'perry.white@dailyplanet.com', 1),
+	(2, 'pultizerwinner', 'sup3rm@nst0r13s', 'lois', 'lane', 'llane@dailyplanet.com', 2),
+	(3, 'superman', 'imsupermn', 'clark', 'kent', 'superman@dailyplanet.com', 3);
+
+DROP TABLE IF EXISTS reimbursement_status;
+
+CREATE TABLE reimbursement_status(
+reimbursement_id INT PRIMARY KEY,
+reimbursement_status VARCHAR(10)
+);
+
+INSERT INTO reimbursement_status(reimbursement_id, reimbursement_status)
+	VALUES(1, 'accepted'),
+	(2,'denied');
+
+DROP TABLE IF EXISTS reimbursement_type
+
+CREATE TABLE reimbursement_type(
+	reimbursement_type_id INT PRIMARY KEY,
+	reimbursement_type VARCHAR(25)
+);
+
+INSERT INTO reimbursement_type(reimbursement_type_id, reimbursement_type)
+	VALUES( 1 , 'supplies'),
+	(2, 'travel'),
+	(3, 'accomadation');
+
+DROP TABLE IF EXISTS user_roles
+
+CREATE TABLE user_roles(
+user_role_id PRIMARY KEY,
+user_role VARCHAR(25)
+);
+
+
+INSERT INTO user_roles(user_role_id, user_role)
+	VALUES( 1,'admin'),
+	( 2,'employee'),
+	( 3,'employee');
