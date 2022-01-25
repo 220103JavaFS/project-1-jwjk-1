@@ -1,15 +1,18 @@
 package com.revature.repos;
 
-import com.revature.models.User;
+import com.revature.models.Reimbursement;
 
 import java.util.List;
 
 public interface ReimbursementDAO {
 
-    List<User> findAll();
-    User findAuthor(int id);
-    boolean addDescription(String description);
-    boolean addStatus(int Status);
+    List<Reimbursement> findAll();
+    Reimbursement findAuthor(int reimbursementAuthor);
+    boolean addDescription(String reimbursementDescription);
+    boolean addStatus(int reimbursementStatusId);
+    boolean addAmount(float reimbursementAmount);
+    boolean addType(int reimbursementTypeId);
+
 
 
 
