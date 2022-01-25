@@ -1,5 +1,6 @@
 package com.revature;
 
+import com.revature.controllers.Controller;
 import io.javalin.Javalin;
 
 public class App {
