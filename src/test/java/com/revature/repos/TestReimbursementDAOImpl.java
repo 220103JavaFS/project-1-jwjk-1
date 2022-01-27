@@ -17,7 +17,6 @@ public class TestReimbursementDAOImpl {
             Timestamp.valueOf("2022/01/27 07:20:20"),
             Timestamp.valueOf("2022/01/28 08:10:00"),
             "Jimmy's whatever",
-            678,
             4,
             1,
             1,
