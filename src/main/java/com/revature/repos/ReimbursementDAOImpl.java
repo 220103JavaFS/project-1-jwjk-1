@@ -20,7 +20,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
             ResultSet result = statement.executeQuery(sql);
 
-            List<Reimbursement> list = new ArrayList<>();
+            List<Reimbursement> listAllReimb = new ArrayList<>();
 
             while(result.next()){
                 Reimbursement reimbursement = new Reimbursement();
@@ -34,9 +34,9 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 reimbursement.setReimbursementStatusId(result.getInt("reimb_status_id"));
                 reimbursement.setReimbursementTypeId(result.getInt("reimb_type_id"));
 
-                list.add(reimbursement);
+                listAllReimb.add(reimbursement);
             }
-            return list;
+            return listAllReimb;
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -52,7 +52,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
             ResultSet result = statement.executeQuery(sql);
 
-            List<Reimbursement> list = new ArrayList<>();
+            List<Reimbursement> listRequest = new ArrayList<>();
 
             while(result.next()){
                 Reimbursement request = new Reimbursement();
@@ -66,9 +66,9 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 request.setReimbursementStatusId(result.getInt("reimb_status_id"));
                 request.setReimbursementTypeId(result.getInt("reimb_type_id"));
 
-                list.add(request);
+                listRequest.add(request);
         }
-            return list;
+            return listRequest;
         }catch (SQLException e){
             e.printStackTrace();
         }
