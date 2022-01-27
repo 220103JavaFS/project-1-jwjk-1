@@ -39,7 +39,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
     @Override
-    public boolean addTimeStamp(Timestamp reimbursementTimeStamp) {
+    public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -49,11 +49,10 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
             Reimbursement reimbursement = new Reimbursement();
 
-            return Timestamp;
-
 
         }
 
+        return reimbursementTimeStamp;
     }
 
 }

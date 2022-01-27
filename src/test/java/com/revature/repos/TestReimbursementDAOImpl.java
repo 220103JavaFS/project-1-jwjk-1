@@ -39,12 +39,12 @@ public class TestReimbursementDAOImpl {
 
     @Test
     void testAddStatus() {
+
         assertFalse(reimbursementDAO.addStatus(testReimbursement.getReimbursementStatusId()));
     }
 
     @Test
-    void testUpdateReimbursementStatus(){
-        updateStatus us = updateStatus();
+    void testUpdateReimbursementStatus(){;
     }
 
     @Test
@@ -59,12 +59,7 @@ public class TestReimbursementDAOImpl {
 
      @Test
     void addTimeStampResolved(){
-        assertTrue(reimbursementDAO.addTimeStamp(testReimbursement.getReimbursementResolved()));
-     }
 
-     @Test
-    void addTimeStampSubmitted(){
-        assertTrue(reimbursementDAO.addTimeStamp(testReimbursement.getReimbursementSubmitted()));
      }
 
 }
