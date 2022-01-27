@@ -7,11 +7,12 @@ import java.util.List;
 public interface ReimbursementDAO {
 
     List<Reimbursement> findAll();
-    List<Reimbursement> findAllRequest();
+    int findAuthor(int reimbursementAuthor);
     boolean addDescription(String reimbursementDescription);
     boolean addStatus(int reimbursementStatusId);
     boolean addAmount(float reimbursementAmount);
     boolean addType(int reimbursementTypeId);
+    boolean addTimeStamp(int reimbursementTimeStamp);
 
 
 
