@@ -3,10 +3,7 @@ package com.revature.repos;
 import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
@@ -26,6 +23,11 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         return false;
     }
 
+    public int updateStatus(int Status) {
+        return Status;
+
+    }
+
     @Override
     public boolean addAmount(float reimbursementAmount) {
         return true;
@@ -37,17 +39,21 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
     @Override
-    public boolean addTimeStamp(int reimbursementTimeStamp) {
+    public boolean addTimeStamp(Timestamp reimbursementTimeStamp) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setTimestamp(1, reimbursementTimeStamp);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
 
             Reimbursement reimbursement = new Reimbursement();
 
+            return Timestamp;
 
-        };
+
+        }
+
     }
+
 }

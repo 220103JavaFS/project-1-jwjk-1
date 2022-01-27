@@ -15,7 +15,7 @@ public class Reimbursement {
     private int reimbursementStatusId;
     private int reimbursementTypeId;
 
-    public Reimbursement() {
+    public Reimbursement(int i, Timestamp timestamp, Timestamp valueOf, String s, int i1, int i2, int i3, int i4) {
 
     }
 
@@ -31,6 +31,10 @@ public class Reimbursement {
         this.reimbursementResolver = reimbursementResolver;
         this.reimbursementStatusId = reimbursementStatusId;
         this.reimbursementTypeId = reimbursementTypeId;
+    }
+
+    public Reimbursement() {
+
     }
 
     public int getReimbursementId() {
