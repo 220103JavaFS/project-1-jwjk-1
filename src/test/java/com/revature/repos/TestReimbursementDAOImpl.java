@@ -10,9 +10,9 @@ public class TestReimbursementDAOImpl {
     private static ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
     private static Reimbursement testReimbursement = new Reimbursement(
             3,
-            7469,
-            1234,
-            567,
+            565,
+            2202/01/21074000,
+            2202/01/21074500,
             "Jimmy's whatever",
             678,
             4,
@@ -49,6 +49,16 @@ public class TestReimbursementDAOImpl {
      @Test
     void addType(){
         assertTrue(reimbursementDAO.addType(testReimbursement.getReimbursementTypeId()));
+     }
+
+     @Test
+    void addTimeStampResolved(){
+        assertTrue(reimbursementDAO.addTimeStamp(testReimbursement.getReimbursementResolved()));
+     }
+
+     @Test
+    void addTimeStampSubmitted(){
+        assertTrue(reimbursementDAO.addTimeStamp(testReimbursement.getReimbursementSubmitted()));
      }
 
 }

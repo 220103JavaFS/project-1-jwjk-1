@@ -12,6 +12,7 @@ public interface ReimbursementDAO {
     boolean addStatus(int reimbursementStatusId);
     boolean addAmount(float reimbursementAmount);
     boolean addType(int reimbursementTypeId);
+    boolean addTimeStamp(int reimbursementTimeStamp);
 
 
 
