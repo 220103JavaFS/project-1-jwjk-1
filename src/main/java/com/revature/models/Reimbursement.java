@@ -1,15 +1,15 @@
 package com.revature.models;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Reimbursement {
 
     private int reimbursementId;
     private float reimbursementAmount;
-    private int reimbursementSubmitted;
-    private int reimbursementResolved;
+    private Timestamp reimbursementSubmitted;
+    private Timestamp reimbursementResolved;
     private String reimbursementDescription;
-    private int reimbursementReceipt;
     private int reimbursementAuthor;
     private int reimbursementResolver;
     private int reimbursementStatusId;
@@ -19,15 +19,14 @@ public class Reimbursement {
 
     }
 
-    public Reimbursement(int reimbursementId, float reimbursementAmount, int reimbursementSubmitted,
-                         int reimbursementResolved, String reimbursementDescription, int reimbursementReceipt,
-                         int reimbursementAuthor, int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
+    public Reimbursement(int reimbursementId, float reimbursementAmount, Timestamp reimbursementSubmitted,
+                         Timestamp reimbursementResolved, String reimbursementDescription, int reimbursementAuthor,
+                         int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
         this.reimbursementId = reimbursementId;
         this.reimbursementAmount = reimbursementAmount;
         this.reimbursementSubmitted = reimbursementSubmitted;
         this.reimbursementResolved = reimbursementResolved;
         this.reimbursementDescription = reimbursementDescription;
-        this.reimbursementReceipt = reimbursementReceipt;
         this.reimbursementAuthor = reimbursementAuthor;
         this.reimbursementResolver = reimbursementResolver;
         this.reimbursementStatusId = reimbursementStatusId;
@@ -50,19 +49,19 @@ public class Reimbursement {
         this.reimbursementAmount = reimbursementAmount;
     }
 
-    public int getReimbursementSubmitted() {
+    public Timestamp getReimbursementSubmitted() {
         return reimbursementSubmitted;
     }
 
-    public void setReimbursementSubmitted(int reimbursementSubmitted) {
+    public void setReimbursementSubmitted(Timestamp reimbursementSubmitted) {
         this.reimbursementSubmitted = reimbursementSubmitted;
     }
 
-    public int getReimbursementResolved() {
+    public Timestamp getReimbursementResolved() {
         return reimbursementResolved;
     }
 
-    public void setReimbursementResolved(int reimbursementResolved) {
+    public void setReimbursementResolved(Timestamp reimbursementResolved) {
         this.reimbursementResolved = reimbursementResolved;
     }
 
@@ -72,14 +71,6 @@ public class Reimbursement {
 
     public void setReimbursementDescription(String reimbursementDescription) {
         this.reimbursementDescription = reimbursementDescription;
-    }
-
-    public int getReimbursementReceipt() {
-        return reimbursementReceipt;
-    }
-
-    public void setReimbursementReceipt(int reimbursementReceipt) {
-        this.reimbursementReceipt = reimbursementReceipt;
     }
 
     public int getReimbursementAuthor() {
@@ -119,12 +110,12 @@ public class Reimbursement {
         if (this == o) return true;
         if (!(o instanceof Reimbursement)) return false;
         Reimbursement that = (Reimbursement) o;
-        return getReimbursementId() == that.getReimbursementId() && getReimbursementAmount() == that.getReimbursementAmount() && getReimbursementSubmitted() == that.getReimbursementSubmitted() && getReimbursementResolved() == that.getReimbursementResolved() && getReimbursementReceipt() == that.getReimbursementReceipt() && getReimbursementAuthor() == that.getReimbursementAuthor() && getReimbursementResolver() == that.getReimbursementResolver() && getReimbursementStatusId() == that.getReimbursementStatusId() && getReimbursementTypeId() == that.getReimbursementTypeId() && Objects.equals(getReimbursementDescription(), that.getReimbursementDescription());
+        return getReimbursementId() == that.getReimbursementId() && getReimbursementAmount() == that.getReimbursementAmount() && getReimbursementSubmitted() == that.getReimbursementSubmitted() && getReimbursementResolved() == that.getReimbursementResolved() && getReimbursementAuthor() == that.getReimbursementAuthor() && getReimbursementResolver() == that.getReimbursementResolver() && getReimbursementStatusId() == that.getReimbursementStatusId() && getReimbursementTypeId() == that.getReimbursementTypeId() && Objects.equals(getReimbursementDescription(), that.getReimbursementDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReimbursementId(), getReimbursementAmount(), getReimbursementSubmitted(), getReimbursementResolved(), getReimbursementDescription(), getReimbursementReceipt(), getReimbursementAuthor(), getReimbursementResolver(), getReimbursementStatusId(), getReimbursementTypeId());
+        return Objects.hash(getReimbursementId(), getReimbursementAmount(), getReimbursementSubmitted(), getReimbursementResolved(), getReimbursementDescription(), getReimbursementAuthor(), getReimbursementResolver(), getReimbursementStatusId(), getReimbursementTypeId());
     }
 
     @Override
@@ -135,7 +126,6 @@ public class Reimbursement {
                 ", reimbursementSubmitted=" + reimbursementSubmitted +
                 ", reimbursementResolved=" + reimbursementResolved +
                 ", reimbursementDescription='" + reimbursementDescription + '\'' +
-                ", reimbursementReceipt=" + reimbursementReceipt +
                 ", reimbursementAuthor=" + reimbursementAuthor +
                 ", reimbursementResolver=" + reimbursementResolver +
                 ", reimbursementStatusId=" + reimbursementStatusId +
