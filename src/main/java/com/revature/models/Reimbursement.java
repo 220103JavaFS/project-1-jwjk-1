@@ -1,13 +1,14 @@
 package com.revature.models;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Reimbursement {
 
     private int reimbursementId;
     private float reimbursementAmount;
-    private int reimbursementSubmitted;
-    private int reimbursementResolved;
+    private Timestamp reimbursementSubmitted;
+    private Timestamp reimbursementResolved;
     private String reimbursementDescription;
     private int reimbursementReceipt;
     private int reimbursementAuthor;
@@ -19,8 +20,8 @@ public class Reimbursement {
 
     }
 
-    public Reimbursement(int reimbursementId, float reimbursementAmount, int reimbursementSubmitted,
-                         int reimbursementResolved, String reimbursementDescription, int reimbursementReceipt,
+    public Reimbursement(int reimbursementId, float reimbursementAmount, Timestamp reimbursementSubmitted,
+                         Timestamp reimbursementResolved, String reimbursementDescription, int reimbursementReceipt,
                          int reimbursementAuthor, int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
         this.reimbursementId = reimbursementId;
         this.reimbursementAmount = reimbursementAmount;
@@ -50,19 +51,19 @@ public class Reimbursement {
         this.reimbursementAmount = reimbursementAmount;
     }
 
-    public int getReimbursementSubmitted() {
+    public Timestamp getReimbursementSubmitted() {
         return reimbursementSubmitted;
     }
 
-    public void setReimbursementSubmitted(int reimbursementSubmitted) {
+    public void setReimbursementSubmitted(Timestamp reimbursementSubmitted) {
         this.reimbursementSubmitted = reimbursementSubmitted;
     }
 
-    public int getReimbursementResolved() {
+    public Timestamp getReimbursementResolved() {
         return reimbursementResolved;
     }
 
-    public void setReimbursementResolved(int reimbursementResolved) {
+    public void setReimbursementResolved(Timestamp reimbursementResolved) {
         this.reimbursementResolved = reimbursementResolved;
     }
 

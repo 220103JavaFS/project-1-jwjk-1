@@ -2,6 +2,9 @@ package com.revature.repos;
 
 import com.revature.models.Reimbursement;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Timestamp;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -11,8 +14,8 @@ public class TestReimbursementDAOImpl {
     private static Reimbursement testReimbursement = new Reimbursement(
             3,
             7469,
-            1234,
-            567,
+            Timestamp.valueOf("2022/01/27 07:20:20"),
+            Timestamp.valueOf("2022/01/28 08:10:00"),
             "Jimmy's whatever",
             678,
             4,
