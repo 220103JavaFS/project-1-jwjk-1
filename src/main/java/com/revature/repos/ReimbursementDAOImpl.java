@@ -100,12 +100,13 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     @Override
     public boolean updateStatus(Reimbursement reimbursement) {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE reimbursement SET reimb_status_id = ? WHERE reimbursement_id = ? ;";
+            String sql = "UPDATE reimbursement SET reimb_status_id = ?, reimb_resolved = ? WHERE reimbursement_id = ? ;";
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
             int count = 0;
             ps.setInt(++count, reimbursement.getReimbursementStatusId());
+            ps.setTimestamp(++count, reimbursement.getReimbursementResolved());
             ps.setInt(++count, reimbursement.getReimbursementId());
             ps.execute();
 
