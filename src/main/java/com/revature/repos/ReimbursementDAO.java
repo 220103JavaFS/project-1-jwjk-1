@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ReimbursementDAO {
 
-    List<Reimbursement> findAll();
+    List<Reimbursement> findAllReimbursement();
+    List<Reimbursement> findAllRequest();
 
     int findAuthor(int reimbursementAuthor);
     boolean addDescription(String reimbursementDescription);
