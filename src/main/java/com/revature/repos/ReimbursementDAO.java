@@ -11,11 +11,8 @@ public interface ReimbursementDAO {
     List<Reimbursement> findAllRequest();
 
     int findAuthor(int reimbursementAuthor);
-    boolean addDescription(String reimbursementDescription);
-    boolean addStatus(int reimbursementStatusId);
-    int updateStatus(int reimbursementStatusId);
-    boolean addAmount(float reimbursementAmount);
-    boolean addType(int reimbursementTypeId);
+    boolean addRequest(Reimbursement reimbursement);
+    boolean updateStatus(Reimbursement reimbursement);
     Timestamp addTimeStamp(Timestamp reimbursementTimeStamp);
 
 

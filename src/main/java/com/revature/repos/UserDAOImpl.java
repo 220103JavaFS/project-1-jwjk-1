@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO{
             List<User> list = new ArrayList<>();
 
             while (rs.next()) {
-                User user = new User;
+                User user = new User();
                 user.setUserID(rs.getInt("user_id"));
                 user.setUserName(rs.getString("username"));
                 user.setPassword(rs.getString("passwords"));

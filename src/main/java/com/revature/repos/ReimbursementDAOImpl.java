@@ -76,27 +76,46 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     public int findAuthor(int id) { return id; }
 
     @Override
-    public boolean addDescription (String description) {return true; }
+    public boolean addRequest(Reimbursement reimbursement) {
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "INSERT INTO reimbursement(reimb_amount, reimb_submitted, reimb_description, reimb_author," +
+                    " reimb_status_id, reimb_type_id) VALUES(?, ?, ?, ?, 1, ?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
 
-    @Override
-    public boolean addStatus(int Status) {
+            int count = 0;
+            ps.setFloat(++count, reimbursement.getReimbursementAmount());
+            ps.setTimestamp(++count, reimbursement.getReimbursementSubmitted());
+            ps.setString(++count, reimbursement.getReimbursementDescription());
+            ps.setInt(++count, reimbursement.getReimbursementAuthor());
+            ps.setInt(++count, reimbursement.getReimbursementTypeId());
+            ps.execute();
+
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
-    public int updateStatus(int Status) {
-        return Status;
-
-    }
-
     @Override
-    public boolean addAmount(float reimbursementAmount) {
-        return true;
+    public boolean updateStatus(Reimbursement reimbursement) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE reimbursement SET reimb_status_id = ? WHERE reimbursement_id = ? ;";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            int count = 0;
+            ps.setInt(++count, reimbursement.getReimbursementStatusId());
+            ps.setInt(++count, reimbursement.getReimbursementId());
+            ps.execute();
+
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
-    @Override
-    public boolean addType(int reimbursementTypeId) {
-        return true;
-    }
 
     @Override
     public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
