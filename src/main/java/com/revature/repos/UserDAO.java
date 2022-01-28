@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserDAO {
 
     List<User> findAllUsers();
+    User findUserByUserName(String userName);
     boolean updateUsername();
     boolean updatePassword();
     boolean updateEmail();
