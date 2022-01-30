@@ -8,8 +8,6 @@ public interface UserDAO {
 
     List<User> findAllUsers();
     User findUserByUserName(String userName);
-    boolean updateUsername();
-    boolean updatePassword();
-    boolean updateEmail();
+    boolean employeeInfoUpdate(User user);
 
 }

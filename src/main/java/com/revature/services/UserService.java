@@ -17,4 +17,8 @@ public class UserService {
     public User findUserByUserName(String userName){
         return userDAO.findUserByUserName(userName);
     }
+
+    public boolean employeeInfoUpdate(User user) {
+        return userDAO.employeeInfoUpdate(user);
+    }
 }

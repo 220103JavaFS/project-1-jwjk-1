@@ -2,7 +2,6 @@ package com.revature.repos;
 
 import com.revature.models.Reimbursement;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface ReimbursementDAO {
@@ -12,7 +11,7 @@ public interface ReimbursementDAO {
 
     boolean addRequest(Reimbursement reimbursement);
     boolean updateStatus(Reimbursement reimbursement);
-    Timestamp addTimeStamp(Timestamp reimbursementTimeStamp);
+//    Timestamp addTimeStamp(Timestamp reimbursementTimeStamp);
 
 
 

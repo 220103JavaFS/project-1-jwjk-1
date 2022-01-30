@@ -76,7 +76,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     public boolean addRequest(Reimbursement reimbursement) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "INSERT INTO reimbursement(reimb_amount, reimb_submitted, reimb_description, reimb_author," +
-                    " reimb_status_id, reimb_type_id) VALUES(?, ?, ?, ?, 1, ?);";
+                    " reimb_status_id, reimb_type_id) VALUES(?, (SELECT CURRENT_TIMESTAMP), ?, ?, 1, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             int count = 0;
@@ -97,13 +97,14 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     @Override
     public boolean updateStatus(Reimbursement reimbursement) {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE reimbursement SET reimb_status_id = ?, reimb_resolved = ? WHERE reimbursement_id = ? ;";
+            String sql = "UPDATE reimbursement SET reimb_status_id = ?, reimb_resolved = ?, reimb_resolver = ? WHERE reimb_id = ? ;";
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
             int count = 0;
             ps.setInt(++count, reimbursement.getReimbursementStatusId());
             ps.setTimestamp(++count, reimbursement.getReimbursementResolved());
+            ps.setInt(++count,reimbursement.getReimbursementResolver());
             ps.setInt(++count, reimbursement.getReimbursementId());
             ps.execute();
 
@@ -115,21 +116,21 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
 
-    @Override
-    public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
-        try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setTimestamp(1, reimbursementTimeStamp);
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-            Reimbursement reimbursement = new Reimbursement();
-
-
-        }
-
-        return reimbursementTimeStamp;
-    }
+//    @Override
+//    public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
+//        try (Connection conn = ConnectionUtil.getConnection()) {
+//            String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
+//            PreparedStatement statement = conn.prepareStatement(sql);
+//            statement.setTimestamp(1, reimbursementTimeStamp);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//
+//            Reimbursement reimbursement = new Reimbursement();
+//
+//
+//        }
+//
+//        return reimbursementTimeStamp;
+//    }
 
 }
