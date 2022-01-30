@@ -73,9 +73,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     }
 
     @Override
-    public int findAuthor(int id) { return id; }
-
-    @Override
     public boolean addRequest(Reimbursement reimbursement) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "INSERT INTO reimbursement(reimb_amount, reimb_submitted, reimb_description, reimb_author," +
