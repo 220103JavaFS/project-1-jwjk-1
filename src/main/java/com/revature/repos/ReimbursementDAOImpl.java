@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
 
-
+    //Manager gets to see all the list of reimbursements.
     @Override
     public List<Reimbursement> findAllReimbursement() {
         try(Connection conn = ConnectionUtil.getConnection()){
@@ -41,6 +41,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         return new ArrayList<Reimbursement>();
     }
 
+    //Manager can see the list of reimbursement that are on 'requested' phase.
     @Override
     public List<Reimbursement> findAllRequest() {
         try(Connection conn = ConnectionUtil.getConnection()){
@@ -72,6 +73,41 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         return new ArrayList<Reimbursement>();
     }
 
+    //Employee can see the list of past reimbursement.
+    @Override
+    public List<Reimbursement> viewPastRequests(int authorId) {
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "SELECT * FROM reimbursement WHERE reimb_author = ?;";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1,authorId);
+
+            ResultSet result = ps.executeQuery();
+
+            List<Reimbursement> list = new ArrayList<>();
+
+            while(result.next()){
+                Reimbursement reimb = new Reimbursement();
+                reimb.setReimbursementId(result.getInt("reimb_id"));
+                reimb.setReimbursementAmount(result.getFloat("reimb_amount"));
+                reimb.setReimbursementSubmitted(result.getTimestamp("reimb_submitted"));
+                reimb.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
+                reimb.setReimbursementDescription(result.getString("reimb_description"));
+                reimb.setReimbursementAuthor(result.getInt("reimb_author"));
+                reimb.setReimbursementResolver(result.getInt("reimb_resolver"));
+                reimb.setReimbursementStatusId(result.getInt("reimb_status_id"));
+                reimb.setReimbursementTypeId(result.getInt("reimb_type_id"));
+                list.add(reimb);
+            }
+            return list;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    //Employee adds request.
     @Override
     public boolean addRequest(Reimbursement reimbursement) {
         try (Connection conn = ConnectionUtil.getConnection()) {
@@ -94,6 +130,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         return false;
     }
 
+    //Manager can accept or deny requests.
     @Override
     public boolean updateStatus(Reimbursement reimbursement) {
         try(Connection conn = ConnectionUtil.getConnection()){

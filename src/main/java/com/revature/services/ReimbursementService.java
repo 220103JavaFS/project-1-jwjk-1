@@ -17,6 +17,10 @@ public class ReimbursementService {
         return reimbursementDAO.findAllRequest();
     }
 
+    public List<Reimbursement> viewPastRequests(int authorId) {
+        return reimbursementDAO.viewPastRequests(authorId);
+    }
+
     public boolean addRequest(Reimbursement reimbursement) {
         return reimbursementDAO.addRequest(reimbursement);
     }
