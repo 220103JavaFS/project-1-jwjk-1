@@ -1,6 +1,7 @@
 package com.revature.repos;
 
 import com.revature.models.User;
+import com.revature.models.UserRole;
 import com.revature.utils.ConnectionUtil;
 
 import java.sql.*;
@@ -29,7 +30,8 @@ public class UserDAOImpl implements UserDAO{
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
-                user.setUserRoleId(rs.getInt("user_role_id"));
+                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
+                user.setUserRoleId(userRole);
                 list.add(user);
             }
             return list;
@@ -42,7 +44,8 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByUserName(String userName) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "SELECT * FROM users WHERE username = ?;";
+            String sql = "SELECT * FROM (SELECT * FROM users u LEFT JOIN user_roles r ON r.user_role_id = u.user_role_id)" +
+                    " As user_role_id WHERE username = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName );
             ResultSet rs = ps.executeQuery();
@@ -55,13 +58,44 @@ public class UserDAOImpl implements UserDAO{
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
-                user.setUserRoleId(rs.getInt("user_role_id"));
+                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
+                user.setUserRoleId(userRole);
             }
             return user;
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return new User();
+    }
+
+    @Override
+    public User findUserByUserId(int userID) {
+        try(Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "SELECT * FROM (SELECT * FROM users u LEFT JOIN user_roles r ON r.user_role_id = u.user_role_id)" +
+                    " AS user_role_id WHERE user_id = ? ";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+                    ps.setInt(1,userID);
+                    ResultSet rs = ps.executeQuery();
+
+            User user = new User();
+
+            while(rs.next()){
+                user.setUserID(rs.getInt("user_id"));
+                user.setUserName(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setUserFirstName(rs.getString("user_first_name"));
+                user.setUserLastName(rs.getString("user_last_name"));
+                user.setUserEmail(rs.getString("user_email"));
+
+                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
+                user.setUserRoleId(userRole);
+            }
+            return user;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return new User();
     }
 
     @Override

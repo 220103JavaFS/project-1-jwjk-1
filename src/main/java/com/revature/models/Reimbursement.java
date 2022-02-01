@@ -10,18 +10,18 @@ public class Reimbursement {
     private Timestamp reimbursementSubmitted;
     private Timestamp reimbursementResolved;
     private String reimbursementDescription;
-    private int reimbursementAuthor;
-    private int reimbursementResolver;
-    private int reimbursementStatusId;
-    private int reimbursementTypeId;
+    private User reimbursementAuthor;
+    private User reimbursementResolver;
+    private ReimbursementStatus reimbursementStatusId;
+    private ReimbursementType reimbursementTypeId;
 
     public Reimbursement(int i, Timestamp timestamp, Timestamp valueOf, String s, int i1, int i2, int i3, int i4) {
 
     }
 
     public Reimbursement(int reimbursementId, float reimbursementAmount, Timestamp reimbursementSubmitted,
-                         Timestamp reimbursementResolved, String reimbursementDescription, int reimbursementAuthor,
-                         int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
+                         Timestamp reimbursementResolved, String reimbursementDescription, User reimbursementAuthor,
+                         User reimbursementResolver, ReimbursementStatus reimbursementStatusId, ReimbursementType reimbursementTypeId) {
         this.reimbursementId = reimbursementId;
         this.reimbursementAmount = reimbursementAmount;
         this.reimbursementSubmitted = reimbursementSubmitted;
@@ -77,35 +77,38 @@ public class Reimbursement {
         this.reimbursementDescription = reimbursementDescription;
     }
 
-    public int getReimbursementAuthor() {
+    public User getReimbursementAuthor() {
+
         return reimbursementAuthor;
     }
 
-    public void setReimbursementAuthor(int reimbursementAuthor) {
+    public void setReimbursementAuthor(User reimbursementAuthor) {
+
         this.reimbursementAuthor = reimbursementAuthor;
     }
 
-    public int getReimbursementResolver() {
+    public User getReimbursementResolver() {
+
         return reimbursementResolver;
     }
 
-    public void setReimbursementResolver(int reimbursementResolver) {
+    public void setReimbursementResolver(User reimbursementResolver) {
         this.reimbursementResolver = reimbursementResolver;
     }
 
-    public int getReimbursementStatusId() {
+    public ReimbursementStatus getReimbursementStatusId() {
         return reimbursementStatusId;
     }
 
-    public void setReimbursementStatusId(int reimbursementStatusId) {
+    public void setReimbursementStatusId(ReimbursementStatus reimbursementStatusId) {
         this.reimbursementStatusId = reimbursementStatusId;
     }
 
-    public int getReimbursementTypeId() {
+    public ReimbursementType getReimbursementTypeId() {
         return reimbursementTypeId;
     }
 
-    public void setReimbursementTypeId(int reimbursementTypeId) {
+    public void setReimbursementTypeId(ReimbursementType reimbursementTypeId) {
         this.reimbursementTypeId = reimbursementTypeId;
     }
 

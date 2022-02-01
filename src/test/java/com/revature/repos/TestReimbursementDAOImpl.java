@@ -35,31 +35,6 @@ public class TestReimbursementDAOImpl {
         assertNotNull(reimbursementDAO.findAllReimbursement());
     }
 
-  //  @Test
-  //  void testFindAuthor() {
-  //  assertEquals(reimbursementDAO.findAuthor(testReimbursement.getReimbursementAuthor()));
-  //  }
-// This test sites the same issues as the first test.
-    @Test
-    void testAddDescriptionTrue() {
-        assertTrue(reimbursementDAO.addDescription(testReimbursement.getReimbursementDescription()));
-    }
-// This test sites the same issues as the first test.
-    @Test
-    void testAddStatus() {
-
-        assertFalse(reimbursementDAO.addStatus(testReimbursement.getReimbursementStatusId()));
-    }
-// This test sites the same issues as the first test.
-    @Test
-    void testAddAmount() {
-        assertTrue(reimbursementDAO.addAmount(testReimbursement.getReimbursementAmount()));
-        }
-// This test sites the same issues as the first test.
-     @Test
-    void addType() {
-         assertTrue(reimbursementDAO.addType(testReimbursement.getReimbursementTypeId()));
-     }
 
 }
 

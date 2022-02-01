@@ -10,14 +10,14 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userEmail;
-    private int userRoleId;
+    private UserRole userRoleId;
 
     public User() {
 
     }
 
     public User(int userID, String userName, String password, String userFirstName, String userLastName, String userEmail,
-                int userRoleId) {
+                UserRole userRoleId) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -75,11 +75,11 @@ public class User {
         this.userEmail = userEmail;
     }
 
-    public int getUserRoleId() {
+    public UserRole getUserRoleId() {
         return userRoleId;
     }
 
-    public void setUserRoleId(int userRoleId) {
+    public void setUserRoleId(UserRole userRoleId) {
         this.userRoleId = userRoleId;
     }
 
