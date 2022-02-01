@@ -31,8 +31,7 @@ public class TestReimbursementDAOImpl {
     // passing yesterday or a few days ago.
     @Test
     void testFindALLReimbursement(){
-        assertNull(reimbursementDAO.findAllReimbursement());
-        assertNotNull(reimbursementDAO.findAllReimbursement());
+        assertEquals(testReimbursement, reimbursementDAO.findAllReimbursement());
     }
 
 

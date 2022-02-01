@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO{
                 User user = new User();
                 user.setUserID(rs.getInt("user_id"));
                 user.setUserName(rs.getString("username"));
-                user.setPassword(rs.getString("passwords"));
+                user.setPassword(rs.getString("password"));
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO{
             while (rs.next()) {
                 user.setUserID(rs.getInt("user_id"));
                 user.setUserName(rs.getString("username"));
-                user.setPassword(rs.getString("passwords"));
+                user.setPassword(rs.getString("password"));
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
@@ -101,7 +101,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public boolean employeeInfoUpdate(User user) {
         try (Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE users SET username = ?, passwords = ?, user_first_name = ?, user_last_name = ?," +
+            String sql = "UPDATE users SET username = ?, password = ?, user_first_name = ?, user_last_name = ?," +
                     " user_email = ?, user_role_id = 2, WHERE username = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);

@@ -7,10 +7,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
 
-    public String encoder(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(password.getBytes());
-        byte[] encryptPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-        return String.format("%040x", new BigInteger(1,encryptPassword));
-    }
+        public String encoder(String password) throws NoSuchAlgorithmException {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] encryptPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            return String.format("%040x", new BigInteger(1, encryptPassword));
+        }
+
 }

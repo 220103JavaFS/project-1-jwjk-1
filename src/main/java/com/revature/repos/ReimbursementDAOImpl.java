@@ -17,7 +17,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     @Override
     public List<Reimbursement> findAllReimbursement() {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "SELECT * FROM reimbursement;";
+            String sql = "SELECT * FROM reimbursement AS r LEFT JOIN reimbursement_type t ON  t.reimb_type_id" +
+                    " = r.reimb_type_id LEFT JOIN reimbursement_status s ON s.reimb_status_id = r.reimb_status_id;";
 
             Statement statement = conn.createStatement();
 
