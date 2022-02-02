@@ -1,35 +1,59 @@
 package com.revature.repos;
 
 import com.revature.models.Reimbursement;
-import org.junit.jupiter.api.Test;
+import com.revature.services.ReimbursementService;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class TestReimbursementDAOImpl {
 
+//    private ReimbursementService testService;
+//    private List<Reimbursement> list = new ArrayList<Reimbursement>();
     private static ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
     private static Reimbursement testReimbursement = new Reimbursement(
-            3,
-            Timestamp.valueOf("2022-01-27 07:20:20.0"),
-            Timestamp.valueOf("2022-01-28 08:10:00.0"),
-            "Jimmy's whatever",
-            4,
             1,
+            5.0F,
+            Timestamp.valueOf("2022-01-21 07:40:00.0"),
+            Timestamp.valueOf("2022-01-21 07:45:00.0"),
+            "coffee on my way to a story",
+            2,
             1,
+            2,
             1
+
     );
-    // Timestamp causes testing problems because it is asked for when all is searched for
-    // Other issues include ExceptionInInitializerError, Optional. or ElseGet, ArrayList,
-    // ArrayList x2, and IlleagalArguemtExeception.  What is strange is I remember this test
-    // passing yesterday or a few days ago.
+//
+//    @Mock
+//    private ReimbursementDAO mockDAO;
+//
+//    @BeforeEach
+//    public void setMockDAO(){
+//        List<Reimbursement> mockList = new ArrayList<Reimbursement>();
+//        mockList.add(testReimbursement);
+//        list = mockList;
+//
+//        testReimbursement.setReimbursementId(1);
+//        testReimbursement.setReimbursementAmount(5.0F);
+//        MockitoAnnotations.openMocks(this);
+//        testService = new ReimbursementService();
+//        Mockito.when(mockDAO.ge)
+//
+//    }
+
     @Test
+    @Order(1)
     void testFindALLReimbursement(){
         assertEquals(testReimbursement, reimbursementDAO.findAllReimbursement());
     }

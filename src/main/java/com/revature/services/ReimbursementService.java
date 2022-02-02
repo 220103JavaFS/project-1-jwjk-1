@@ -22,10 +22,12 @@ public class ReimbursementService {
     }
 
     public boolean addRequest(Reimbursement reimbursement) {
+
         return reimbursementDAO.addRequest(reimbursement);
     }
 
     public boolean updateStatus(Reimbursement reimbursement){
+
         return reimbursementDAO.updateStatus(reimbursement);
     }
 }

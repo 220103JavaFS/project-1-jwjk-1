@@ -98,29 +98,29 @@ public class UserDAOImpl implements UserDAO{
         return new User();
     }
 
-    @Override
-    public boolean employeeInfoUpdate(User user) {
-        try (Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE users SET username = ?, password = ?, user_first_name = ?, user_last_name = ?," +
-                    " user_email = ?, user_role_id = 2, WHERE username = ?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            int count = 0;
-            ps.setString(++count, user.getUserName());
-            ps.setString(++count, user.getPassword());
-            ps.setString(++count, user.getUserFirstName());
-            ps.setString(++count, user.getUserLastName());
-            ps.setString(++count, user.getUserEmail());
-            ps.setString(++count, user.getUserName());
-
-            ps.execute();
-
-            return true;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
+//    @Override
+//    public boolean employeeInfoUpdate(User user) {
+//        try (Connection conn = ConnectionUtil.getConnection()){
+//            String sql = "UPDATE users SET username = ?, password = ?, user_first_name = ?, user_last_name = ?," +
+//                    " user_email = ?, user_role_id = 2, WHERE username = ?";
+//
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//
+//            int count = 0;
+//            ps.setString(++count, user.getUserName());
+//            ps.setString(++count, user.getPassword());
+//            ps.setString(++count, user.getUserFirstName());
+//            ps.setString(++count, user.getUserLastName());
+//            ps.setString(++count, user.getUserEmail());
+//            ps.setString(++count, user.getUserName());
+//
+//            ps.execute();
+//
+//            return true;
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
 
 }
