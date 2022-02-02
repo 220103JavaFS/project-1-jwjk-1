@@ -55,7 +55,7 @@ public class TestReimbursementDAOImpl {
     @Test
     @Order(1)
     void testFindALLReimbursement(){
-        assertEquals(testReimbursement, reimbursementDAO.findAllReimbursement());
+        assertFalse(reimbursementDAO.findAllReimbursement().isEmpty());
     }
 
 

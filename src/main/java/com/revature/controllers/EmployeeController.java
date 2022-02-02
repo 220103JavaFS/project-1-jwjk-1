@@ -2,9 +2,10 @@ package com.revature.controllers;
 
 import com.revature.models.Reimbursement;
 import com.revature.services.ReimbursementService;
+import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
-public class EmployeeController {
+public class EmployeeController implements Controller {
     private ReimbursementService reimbursementService = new ReimbursementService();
 
     Handler addRequest = (ctx) -> {
@@ -31,4 +32,9 @@ public class EmployeeController {
         }
     };
 
+    @Override
+    public void addRoutes(Javalin app) {
+        app.get("/employee/addRequest", addRequest);
+        app.get("/employee/{userId}", viewPastRequests);
+    }
 }
