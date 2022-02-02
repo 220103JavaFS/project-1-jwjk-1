@@ -5,12 +5,17 @@ import com.revature.models.ReimbursementStatus;
 import com.revature.models.ReimbursementType;
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
+
+    private final Logger log = LoggerFactory.getLogger(ReimbursementDAOImpl.class);
+
     private UserDAO userDAO = new UserDAOImpl();
 
     //Manager gets to see all the list of reimbursements.
@@ -42,6 +47,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             return listReimb;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to find all reimbursement!");
         }
         return new ArrayList<Reimbursement>();
     }
@@ -74,6 +80,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             return listRequest;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to find all requests!");
         }
         return new ArrayList<Reimbursement>();
     }
@@ -108,6 +115,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             return list;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to view past requests!");
         }
         return new ArrayList<>();
     }
@@ -131,6 +139,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             return true;
         }catch (SQLException e){
             e.printStackTrace();
+            log.debug("Failed to add a request!");
         }
         return false;
     }
@@ -152,6 +161,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             return true;
         }catch (SQLException e){
             e.printStackTrace();
+            log.debug("Failed to update reimbursement status!");
         }
         return false;
     }
