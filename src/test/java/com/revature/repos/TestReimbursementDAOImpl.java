@@ -20,9 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestReimbursementDAOImpl {
 
 //    private ReimbursementService testService;
-//    private List<Reimbursement> list = new ArrayList<Reimbursement>();
+    private List<Reimbursement> list = new ArrayList<Reimbursement>();
     private static ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
     private static Reimbursement testReimbursement = new Reimbursement(
+
             1,
             5.0F,
             Timestamp.valueOf("2022-01-21 07:40:00.0"),
@@ -34,28 +35,23 @@ public class TestReimbursementDAOImpl {
             1
 
     );
-//
-//    @Mock
-//    private ReimbursementDAO mockDAO;
-//
-//    @BeforeEach
-//    public void setMockDAO(){
-//        List<Reimbursement> mockList = new ArrayList<Reimbursement>();
-//        mockList.add(testReimbursement);
-//        list = mockList;
-//
-//        testReimbursement.setReimbursementId(1);
-//        testReimbursement.setReimbursementAmount(5.0F);
-//        MockitoAnnotations.openMocks(this);
-//        testService = new ReimbursementService();
-//        Mockito.when(mockDAO.ge)
-//
-//    }
 
     @Test
     @Order(1)
     void testFindALLReimbursement(){
         assertFalse(reimbursementDAO.findAllReimbursement().isEmpty());
+    }
+
+    @Test
+    @Order(2)
+    void testAddRequest(){
+        assertTrue(reimbursementDAO.addRequest(testReimbursement));
+    }
+
+    @Test
+    @Order(4)
+    void testUpdateRequest(){
+        assertTrue(reimbursementDAO.updateStatus(testReimbursement));
     }
 
 
