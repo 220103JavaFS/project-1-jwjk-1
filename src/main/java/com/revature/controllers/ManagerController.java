@@ -27,8 +27,9 @@ public class ManagerController implements Controller {
 
     Handler updateStatus = (ctx) -> {
         if (ctx.req.getSession(false) != null) {
-            Reimbursement reimb = ctx.bodyAsClass(Reimbursement.class);
-            if(reimbursementService.updateStatus(reimb)){
+            Reimbursement reimbUpdate = ctx.bodyAsClass(Reimbursement.class);
+
+            if(reimbursementService.updateStatus(reimbUpdate)){
                 ctx.status(202);
             }else {
                 ctx.status(400);
@@ -43,7 +44,7 @@ public class ManagerController implements Controller {
     public void addRoutes(Javalin app) {
         app.get("/manager/allReimbursement", findAllReimbursement);
         app.get("manager/findAllRequest", findAllRequest);
-        app.get("/manager/updateStatus", updateStatus);
+        app.put("/manager/updateStatus", updateStatus);
 
     }
 }

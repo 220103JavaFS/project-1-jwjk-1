@@ -66,7 +66,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 request.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
                 request.setReimbursementDescription(result.getString("reimb_description"));
                 request.setReimbursementAuthor(result.getInt("reimb_author"));
-                request.setReimbursementResolver(result.getInt("reimb_reslover"));
+                request.setReimbursementResolver(result.getInt("reimb_resolver"));
                 request.setReimbursementStatusId(result.getInt("reimb_status_id"));
                 request.setReimbursementTypeId(result.getInt("reimb_type_id"));
                 listRequest.add(request);
@@ -100,7 +100,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 reimb.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
                 reimb.setReimbursementDescription(result.getString("reimb_description"));
                 reimb.setReimbursementAuthor(result.getInt("reimb_author"));
-                reimb.setReimbursementResolver(result.getInt("reimb_reslover"));
+                reimb.setReimbursementResolver(result.getInt("reimb_resolver"));
                 reimb.setReimbursementStatusId(result.getInt("reimb_status_id"));
                 reimb.setReimbursementTypeId(result.getInt("reimb_type_id"));
                 list.add(reimb);
@@ -111,6 +111,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         }
         return new ArrayList<>();
     }
+
 
     //Employee adds request.
     @Override
@@ -144,7 +145,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
             int count = 0;
             ps.setInt(++count, reimbursement.getReimbursementStatusId());
-            ps.setTimestamp(++count, reimbursement.getReimbursementResolved());
             ps.setInt(++count,reimbursement.getReimbursementResolver());
             ps.setInt(++count, reimbursement.getReimbursementId());
             ps.execute();
@@ -155,23 +155,5 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
         }
         return false;
     }
-
-
-//    @Override
-//    public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
-//        try (Connection conn = ConnectionUtil.getConnection()) {
-//            String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
-//            PreparedStatement statement = conn.prepareStatement(sql);
-//            statement.setTimestamp(1, reimbursementTimeStamp);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//            Reimbursement reimbursement = new Reimbursement();
-//
-//
-//        }
-//
-//        return reimbursementTimeStamp;
-//    }
 
 }

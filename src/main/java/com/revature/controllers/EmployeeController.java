@@ -34,7 +34,7 @@ public class EmployeeController implements Controller {
 
     @Override
     public void addRoutes(Javalin app) {
-        app.get("/employee/addRequest", addRequest);
-        app.get("/employee/{userId}", viewPastRequests);
+        app.post("/employee/addRequest", addRequest);
+        app.get("/employee/{authorId}", viewPastRequests);
     }
 }
