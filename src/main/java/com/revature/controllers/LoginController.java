@@ -32,8 +32,10 @@ public class LoginController implements Controller{
         if(ctx.req.getSession(false) != null) {
             ctx.req.getSession().invalidate();
             ctx.status(200);
+            log.info("Logout Success");
         }else {
             ctx.status(401);
+            log.info("Logout Faield");
         }
     };
 

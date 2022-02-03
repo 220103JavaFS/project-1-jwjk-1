@@ -1,0 +1,32 @@
+16:59:29.005 [] [main] DEBUG org.eclipse.jetty.util.log - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
+16:59:29.020 [] [main] INFO  org.eclipse.jetty.util.log - Logging initialized @486ms to org.eclipse.jetty.util.log.Slf4jLog
+16:59:29.064 [] [main] INFO  io.javalin.Javalin - Static file handler added: StaticFileConfig(hostedPath=/, directory=C:\Users\ppidaggi\OneDrive\Desktop\frontend, location=EXTERNAL, precompress=false, aliasCheck=null, headers={Cache-Control=max-age=0}, skipFileFunction=Function1<javax.servlet.http.HttpServletRequest, java.lang.Boolean>). File system location: 'C:\Users\ppidaggi\OneDrive\Desktop\frontend'
+16:59:29.166 [] [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+16:59:29.169 [] [main] INFO  io.javalin.Javalin - Starting Javalin ...
+16:59:29.177 [] [main] INFO  io.javalin.Javalin - You are running Javalin 4.1.1 (released October 10, 2021. Your Javalin version is 116 days old. Consider upgrading!).
+16:59:29.780 [] [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+16:59:29.781 [] [main] INFO  io.javalin.Javalin - Javalin started in 613ms \o/
+16:59:45.234 [] [main] DEBUG org.eclipse.jetty.util.log - Logging to Logger[org.eclipse.jetty.util.log] via org.eclipse.jetty.util.log.Slf4jLog
+16:59:45.249 [] [main] INFO  org.eclipse.jetty.util.log - Logging initialized @565ms to org.eclipse.jetty.util.log.Slf4jLog
+16:59:45.299 [] [main] INFO  io.javalin.Javalin - Static file handler added: StaticFileConfig(hostedPath=/, directory=C:\Users\ppidaggi\OneDrive\Desktop\frontend, location=EXTERNAL, precompress=false, aliasCheck=null, headers={Cache-Control=max-age=0}, skipFileFunction=Function1<javax.servlet.http.HttpServletRequest, java.lang.Boolean>). File system location: 'C:\Users\ppidaggi\OneDrive\Desktop\frontend'
+16:59:45.404 [] [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+16:59:45.405 [] [main] INFO  io.javalin.Javalin - Starting Javalin ...
+16:59:45.414 [] [main] INFO  io.javalin.Javalin - You are running Javalin 4.1.1 (released October 10, 2021. Your Javalin version is 116 days old. Consider upgrading!).
+16:59:46.007 [] [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+16:59:46.007 [] [main] INFO  io.javalin.Javalin - Javalin started in 602ms \o/
