@@ -5,6 +5,7 @@ import com.revature.controllers.EmployeeController;
 import com.revature.controllers.LoginController;
 import com.revature.controllers.ManagerController;
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 public class App {
 
@@ -12,9 +13,13 @@ public class App {
 
     public static void main(String[] args) {
 
-        app = Javalin.create();
+        app = Javalin.create((config)->{
+            config.addStaticFiles("C:\\Users\\ppidaggi\\OneDrive\\Desktop\\frontend", Location.EXTERNAL);
+        });
+
+
         configure(new LoginController(), new EmployeeController(), new ManagerController());
-        app.start();
+        app.start(8080);
     }
     private static void configure(Controller... controllers) {
             for(Controller c: controllers) {
