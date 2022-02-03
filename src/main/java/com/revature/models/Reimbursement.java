@@ -10,18 +10,17 @@ public class Reimbursement {
     private Timestamp reimbursementSubmitted;
     private Timestamp reimbursementResolved;
     private String reimbursementDescription;
-    private User reimbursementAuthor;
-    private User reimbursementResolver;
-    private ReimbursementStatus reimbursementStatusId;
-    private ReimbursementType reimbursementTypeId;
+    private int reimbursementAuthor;
+    private int reimbursementResolver;
+    private int reimbursementStatusId;
+    private int reimbursementTypeId;
 
-    public Reimbursement(int i, Timestamp timestamp, Timestamp valueOf, String s, int i1, int i2, int i3, int i4) {
 
-    }
+
 
     public Reimbursement(int reimbursementId, float reimbursementAmount, Timestamp reimbursementSubmitted,
-                         Timestamp reimbursementResolved, String reimbursementDescription, User reimbursementAuthor,
-                         User reimbursementResolver, ReimbursementStatus reimbursementStatusId, ReimbursementType reimbursementTypeId) {
+                         Timestamp reimbursementResolved, String reimbursementDescription, int reimbursementAuthor,
+                        int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
         this.reimbursementId = reimbursementId;
         this.reimbursementAmount = reimbursementAmount;
         this.reimbursementSubmitted = reimbursementSubmitted;

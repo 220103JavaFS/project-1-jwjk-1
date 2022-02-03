@@ -1,39 +1,71 @@
 package com.revature.repos;
 
 import com.revature.models.Reimbursement;
+import com.revature.models.ReimbursementStatus;
+import com.revature.models.ReimbursementType;
+import com.revature.models.User;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.*;
 import java.sql.Timestamp;
+import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class TestReimbursementDAOImpl {
 
+    @Mock
     private static ReimbursementDAO reimbursementDAO = new ReimbursementDAOImpl();
     private static Reimbursement testReimbursement = new Reimbursement(
-            3,
-            Timestamp.valueOf("2022-01-27 07:20:20.0"),
-            Timestamp.valueOf("2022-01-28 08:10:00.0"),
-            "Jimmy's whatever",
-            4,
+            2,
+            500.0f,
+            0000000,
+            0000000,
+            "car rental to report on the meteroplis football playoffs game",
             1,
-            1,
+            2,
+            2,
             1
-    );
-    // Timestamp causes testing problems because it is asked for when all is searched for
-    // Other issues include ExceptionInInitializerError, Optional. or ElseGet, ArrayList,
-    // ArrayList x2, and IlleagalArguemtExeception.  What is strange is I remember this test
-    // passing yesterday or a few days ago.
+            );
+
     @Test
-    void testFindALLReimbursement(){
-        assertEquals(testReimbursement, reimbursementDAO.findAllReimbursement());
+    @Order(1)
+    public void testFindAllReimbursement(){
+
+        assertEquals(reimbursementDAO.findAllReimbursement(), testReimbursement);
     }
 
+}
+
+    @Test
+    @Order(2)
+    public void testFindAllRequest(){
+        assertEquals(reimbursementDAO.findAllRequest(),testReimbursement);
+}
+
+    @Test
+    @Order(3)
+    public void testViewPastRequests(){
+        assertEquals(reimbursementDAO.viewPastRequests(),testReimbursement);
+}
+
+    @Test
+    @Order(4)
+    public void testAddRequest(){
+        assertEquals(reimbursementDAO.addRequest(), testReimbursement);
+    }
+
+    @Test
+    @Order(5)
+    public void testUpdateStatus(){
+        assertEquals(reimbursementDAO.updateStatus(),testReimbursement);
+    }
 
 }
 
