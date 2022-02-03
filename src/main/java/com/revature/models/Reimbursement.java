@@ -14,22 +14,14 @@ public class Reimbursement {
     private int reimbursementResolver;
     private int reimbursementStatusId;
     private int reimbursementTypeId;
-<<<<<<< HEAD
-
-
-=======
 
     public Reimbursement() {
->>>>>>> cec312df3bb6da6e27df2258654eb9d1a4c62ae8
 
+    }
 
     public Reimbursement(int reimbursementId, float reimbursementAmount, Timestamp reimbursementSubmitted,
                          Timestamp reimbursementResolved, String reimbursementDescription, int reimbursementAuthor,
-<<<<<<< HEAD
-                        int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
-=======
                          int reimbursementResolver, int reimbursementStatusId, int reimbursementTypeId) {
->>>>>>> cec312df3bb6da6e27df2258654eb9d1a4c62ae8
         this.reimbursementId = reimbursementId;
         this.reimbursementAmount = reimbursementAmount;
         this.reimbursementSubmitted = reimbursementSubmitted;
