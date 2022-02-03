@@ -5,20 +5,24 @@ import com.revature.models.ReimbursementStatus;
 import com.revature.models.ReimbursementType;
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO{
+
+    private final Logger log = LoggerFactory.getLogger(ReimbursementDAOImpl.class);
+
     private UserDAO userDAO = new UserDAOImpl();
 
     //Manager gets to see all the list of reimbursements.
     @Override
     public List<Reimbursement> findAllReimbursement() {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "SELECT * FROM reimbursement AS r LEFT JOIN reimbursement_type t ON  t.reimb_type_id" +
-                    " = r.reimb_type_id LEFT JOIN reimbursement_status s ON s.reimb_status_id = r.reimb_status_id;";
+            String sql = "SELECT * FROM reimbursement";
 
             Statement statement = conn.createStatement();
 
@@ -33,27 +37,17 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 reimb.setReimbursementSubmitted(result.getTimestamp("reimb_submitted"));
                 reimb.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
                 reimb.setReimbursementDescription(result.getString("reimb_description"));
-                int author = result.getInt("reimb_author");
-                if(author != 0){
-                    User userAuthor = userDAO.findUserByUserId(author);
-                    reimb.setReimbursementAuthor(userAuthor);
-                }
-                int resolver = result.getInt("reimb_resolver");
-                if(resolver != 0){
-                    User userResolver = userDAO.findUserByUserId(author);
-                    reimb.setReimbursementResolver(userResolver);
-                }
-                ReimbursementStatus status = new ReimbursementStatus(result.getInt("reimb_status_id"),
-                        result.getString("reimb_status"));
-                reimb.setReimbursementStatusId(status);
-                ReimbursementType type = new ReimbursementType(result.getInt("reimb_type_id"),
-                        result.getString("reimb_type"));
-                reimb.setReimbursementTypeId(type);
+                reimb.setReimbursementAuthor(result.getInt("reimb_author"));
+                reimb.setReimbursementResolver(result.getInt("reimb_resolver"));
+                reimb.setReimbursementStatusId(result.getInt("reimb_status_id"));
+                reimb.setReimbursementTypeId(result.getInt("reimb_type_id"));
+
                 listReimb.add(reimb);
             }
             return listReimb;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to find all reimbursement!");
         }
         return new ArrayList<Reimbursement>();
     }
@@ -62,8 +56,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
     @Override
     public List<Reimbursement> findAllRequest() {
         try(Connection conn = ConnectionUtil.getConnection()){
-            String sql = "SELECT * FROM reimbursement AS r LEFT JOIN reimbursement_type t ON  t.reimb_type_id =" +
-                    " r.reimb_type_id LEFT JOIN reimbursement_status s ON s.reimb_status_id = r.reimb_status_id WHERE r.reimb_status_id = 1;";
+            String sql = "SELECT * FROM reimbursement WHERE reimb_status_id = 1";
 
             Statement statement = conn.createStatement();
 
@@ -78,27 +71,16 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 request.setReimbursementSubmitted(result.getTimestamp("reimb_submitted"));
                 request.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
                 request.setReimbursementDescription(result.getString("reimb_description"));
-                int author = result.getInt("reimb_author");
-                if(author != 0){
-                    User userAuthor = userDAO.findUserByUserId(author);
-                    request.setReimbursementAuthor(userAuthor);
-                }
-                int resolver = result.getInt("reimb_resolver");
-                if(resolver != 0){
-                    User userResolver = userDAO.findUserByUserId(author);
-                    request.setReimbursementResolver(userResolver);
-                }
-                ReimbursementStatus status = new ReimbursementStatus(result.getInt("reimb_status_id"),
-                        result.getString("reimb_status"));
-                request.setReimbursementStatusId(status);
-                ReimbursementType type = new ReimbursementType(result.getInt("reimb_type_id"),
-                        result.getString("reimb_type"));
-                request.setReimbursementTypeId(type);
+                request.setReimbursementAuthor(result.getInt("reimb_author"));
+                request.setReimbursementResolver(result.getInt("reimb_resolver"));
+                request.setReimbursementStatusId(result.getInt("reimb_status_id"));
+                request.setReimbursementTypeId(result.getInt("reimb_type_id"));
                 listRequest.add(request);
             }
             return listRequest;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to find all requests!");
         }
         return new ArrayList<Reimbursement>();
     }
@@ -124,30 +106,20 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
                 reimb.setReimbursementSubmitted(result.getTimestamp("reimb_submitted"));
                 reimb.setReimbursementResolved(result.getTimestamp("reimb_resolved"));
                 reimb.setReimbursementDescription(result.getString("reimb_description"));
-                int author = result.getInt("reimb_author");
-                if(author != 0){
-                    User userAuthor = userDAO.findUserByUserId(author);
-                    reimb.setReimbursementAuthor(userAuthor);
-                }
-                int resolver = result.getInt("reimb_resolver");
-                if(resolver != 0){
-                    User userResolver = userDAO.findUserByUserId(author);
-                    reimb.setReimbursementResolver(userResolver);
-                }
-                ReimbursementStatus status = new ReimbursementStatus(result.getInt("reimb_status_id"),
-                        result.getString("reimb_status"));
-                reimb.setReimbursementStatusId(status);
-                ReimbursementType type = new ReimbursementType(result.getInt("reimb_type_id"),
-                        result.getString("reimb_type"));
-                reimb.setReimbursementTypeId(type);
+                reimb.setReimbursementAuthor(result.getInt("reimb_author"));
+                reimb.setReimbursementResolver(result.getInt("reimb_resolver"));
+                reimb.setReimbursementStatusId(result.getInt("reimb_status_id"));
+                reimb.setReimbursementTypeId(result.getInt("reimb_type_id"));
                 list.add(reimb);
             }
             return list;
         }catch (SQLException e) {
             e.printStackTrace();
+            log.debug("Failed to view past requests!");
         }
         return new ArrayList<>();
     }
+
 
     //Employee adds request.
     @Override
@@ -160,13 +132,14 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             int count = 0;
             ps.setFloat(++count, reimbursement.getReimbursementAmount());
             ps.setString(++count, reimbursement.getReimbursementDescription());
-            ps.setInt(++count, reimbursement.getReimbursementAuthor().getUserID());
-            ps.setInt(++count, reimbursement.getReimbursementTypeId().getTypeId());
+            ps.setInt(++count, reimbursement.getReimbursementAuthor());
+            ps.setInt(++count, reimbursement.getReimbursementTypeId());
             ps.execute();
 
             return true;
         }catch (SQLException e){
             e.printStackTrace();
+            log.debug("Failed to add a request!");
         }
         return false;
     }
@@ -180,35 +153,17 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
             PreparedStatement ps = conn.prepareStatement(sql);
 
             int count = 0;
-            ps.setInt(++count, reimbursement.getReimbursementStatusId().getStatusID());
-            ps.setTimestamp(++count, reimbursement.getReimbursementResolved());
-            ps.setInt(++count,reimbursement.getReimbursementResolver().getUserID());
+            ps.setInt(++count, reimbursement.getReimbursementStatusId());
+            ps.setInt(++count,reimbursement.getReimbursementResolver());
             ps.setInt(++count, reimbursement.getReimbursementId());
             ps.execute();
 
             return true;
         }catch (SQLException e){
             e.printStackTrace();
+            log.debug("Failed to update reimbursement status!");
         }
         return false;
     }
-
-
-//    @Override
-//    public Timestamp addTimeStamp(Timestamp reimbursementTimeStamp) {
-//        try (Connection conn = ConnectionUtil.getConnection()) {
-//            String sql = "SELECT reimbursement_resolved FROM reimbursement WHERE reimbursement_id = ? ;";
-//            PreparedStatement statement = conn.prepareStatement(sql);
-//            statement.setTimestamp(1, reimbursementTimeStamp);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//            Reimbursement reimbursement = new Reimbursement();
-//
-//
-//        }
-//
-//        return reimbursementTimeStamp;
-//    }
 
 }

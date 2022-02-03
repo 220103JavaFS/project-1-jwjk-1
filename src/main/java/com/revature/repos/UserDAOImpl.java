@@ -1,7 +1,6 @@
 package com.revature.repos;
 
 import com.revature.models.User;
-import com.revature.models.UserRole;
 import com.revature.utils.ConnectionUtil;
 
 import java.sql.*;
@@ -30,8 +29,7 @@ public class UserDAOImpl implements UserDAO{
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
-                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
-                user.setUserRoleId(userRole);
+                user.setUserRoleId(rs.getInt("user_role_id"));
                 list.add(user);
             }
             return list;
@@ -44,8 +42,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByUserName(String userName) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "SELECT * FROM (SELECT * FROM users u LEFT JOIN user_roles r ON r.user_role_id = u.user_role_id)" +
-                    " As user_role_id WHERE username = ?";
+            String sql = "SELECT * FROM users WHERE username = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName );
             ResultSet rs = ps.executeQuery();
@@ -58,8 +55,7 @@ public class UserDAOImpl implements UserDAO{
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
-                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
-                user.setUserRoleId(userRole);
+                user.setUserRoleId(rs.getInt("user_role_id"));
             }
             return user;
         }catch (SQLException e) {
@@ -71,8 +67,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByUserId(int userID) {
         try(Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "SELECT * FROM (SELECT * FROM users u LEFT JOIN user_roles r ON r.user_role_id = u.user_role_id)" +
-                    " AS user_role_id WHERE user_id = ? ";
+            String sql = "SELECT * FROM users WHERE user_id = ? ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
                     ps.setInt(1,userID);
@@ -87,40 +82,13 @@ public class UserDAOImpl implements UserDAO{
                 user.setUserFirstName(rs.getString("user_first_name"));
                 user.setUserLastName(rs.getString("user_last_name"));
                 user.setUserEmail(rs.getString("user_email"));
-
-                UserRole userRole = new UserRole(rs.getInt("user_role_id"), rs.getString("user_role"));
-                user.setUserRoleId(userRole);
+                user.setUserRoleId(rs.getInt("user_role_id"));
             }
             return user;
         }catch(SQLException e){
             e.printStackTrace();
         }
         return new User();
-    }
-
-    @Override
-    public boolean employeeInfoUpdate(User user) {
-        try (Connection conn = ConnectionUtil.getConnection()){
-            String sql = "UPDATE users SET username = ?, password = ?, user_first_name = ?, user_last_name = ?," +
-                    " user_email = ?, user_role_id = 2, WHERE username = ?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            int count = 0;
-            ps.setString(++count, user.getUserName());
-            ps.setString(++count, user.getPassword());
-            ps.setString(++count, user.getUserFirstName());
-            ps.setString(++count, user.getUserLastName());
-            ps.setString(++count, user.getUserEmail());
-            ps.setString(++count, user.getUserName());
-
-            ps.execute();
-
-            return true;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return false;
     }
 
 }

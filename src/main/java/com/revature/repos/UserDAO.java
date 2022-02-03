@@ -9,7 +9,5 @@ public interface UserDAO {
     List<User> findAllUsers();
     User findUserByUserName(String userName);
     User findUserByUserId(int userID);
-    boolean employeeInfoUpdate(User user);
-
 
 }
