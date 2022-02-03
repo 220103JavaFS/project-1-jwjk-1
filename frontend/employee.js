@@ -5,8 +5,8 @@ let logoutBtn = document.getElementById("logoutBtn");
 
 const url = "http://localhost:8080/"
 
-requestBtn.addEventListener("click",addRequest);
 searchBtn.addEventListener("click",viewPastRequests);
+requestBtn.addEventListener("click",addRequest);
 logoutBtn.addEventListener("click", logoutFunc);
 
 logoutBtn.style.display = 'block';
@@ -27,6 +27,58 @@ async function logoutFunc(){
     }else{
         console.log("Logout failed. Returned status code :"+response.status);
   }
+}
+
+async function viewPastRequests(){
+    let authorId = document.getElementById('authorId').value;
+
+    let response = await fetch(url+"employee/"+authorId,{
+        credentials:"include"
+    });
+    if(response.status === 200) {
+        let reimbs = await response.json();
+        listReimb(reimbs);
+    }else{
+        console.log("Error viewing past requests")
+    }
+    
+    function listReimb(reimbs){
+        reimbTbl.innerText = "";
+        for (let reimb of reimbs){
+            let row = document.createElement("tr");
+            for (let data in reimb){
+                let td = document.createElement("td");
+                td.innerText = reimb[data];
+
+                if (data == "reimbursementSubmitted" || data == "reimbursementResolved"){
+                        if(reimb[data]==null){
+                            td.innerText == null
+                        }else{
+                        td.innerText = new Date(reimb[data]);}
+                }
+                if (data == "reimbursementAmount"){
+                    td.innerText = "$" + reimb[data];
+                }
+                if (data == "reimbursementAuthor" || data == "reimbursementResolver"){
+                    if(reimb[data] == null){
+                        td.innerText = null;
+                    }else {
+                        td.innerText = reimb[data];
+                        console.log(reimb[data]);
+                    }
+                }
+                if(data == "reimbursementStatusId"){
+                    td.innerText = reimb[data];
+                }
+                if(data == "reimbursementTypeId"){
+                    td.innerText = reimb[data];
+                }
+                row.appendChild(td);
+            }
+            reimbTbl.appendChild(row);
+        }
+    }
+
 }
 
 
@@ -70,50 +122,3 @@ async function logoutFunc(){
     
   }
 
-async function viewPastRequests(){
-    let authorId = document.getElementById('authorId').value;
-
-    let response = await fetch(url+"employee/"+authorId,{
-        credentials:"include"
-    });
-    if(response.status === 200) {
-        let reimbs = await response.json();
-        listReimb(reimbs);
-    }else{
-        console.log("Error viewing past requests")
-    }
-    
-    function listReimb(reimbs){
-        reimbTbl.innerText = "";
-        for (let reimb of reimbs){
-            let row = document.createElement("tr");
-            for (let data in reimb){
-                let td = document.createElement("td");
-                td.innerText = reimb[data];
-
-                if (data == "reimbursementSubmitted" || data == "reimbursementResolved"){
-                        td.innerText = new Date(reimb[data]);}
-                if (data == "reimbursementAmount"){
-                    td.innerText = "$" + reimb[data];
-                }
-                if (data == "reimbursementAuthor" || data == "reimbursementResolver"){
-                    if(reimb[data] == null){
-                        td.innerText = null;
-                    }else {
-                        td.innerText = reimb[data];
-                        console.log(reimb[data]);
-                    }
-                }
-                if(data == "reimbursementStatusId"){
-                    td.innerText = reimb[data];
-                }
-                if(data == "reimbursementTypeId"){
-                    td.innerText = reimb[data];
-                }
-                row.appendChild(td);
-            }
-            reimbTbl.appendChild(row);
-        }
-    }
-
-}

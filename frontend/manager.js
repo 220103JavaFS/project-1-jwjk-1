@@ -59,7 +59,11 @@ async function findAllReimbursement(){
                 if (data == "reimbursementAmount"){
                     td.innerText = "$" + reimb[data];}
                 if (data == "reimbursementSubmitted" || data == "reimbursementResolved"){
+                    if(reimb[data]==null){
+                        td.innerText == null
+                    }else{
                     td.innerText = new Date(reimb[data]);}
+                }
                 if (data == "reimbursementAuthor" || data == "reimbursementResolver"){
                     if(reimb[data] == null){
                         td.innerText = null;
@@ -102,11 +106,16 @@ async function findAllRequest(){
                 for (let data in reimb){
                     let td = document.createElement("td");
                     td.innerText = reimb[data];
-
-                    if (data == "reimbursementAmount"){
-                        td.innerText = "$" + reimb[data];}
+    
                     if (data == "reimbursementSubmitted" || data == "reimbursementResolved"){
-                        td.innerText = new Date(reimb[data]);}
+                            if(reimb[data]==null){
+                                td.innerText == null
+                            }else{
+                            td.innerText = new Date(reimb[data]);}
+                    }
+                    if (data == "reimbursementAmount"){
+                        td.innerText = "$" + reimb[data];
+                    }
                     if (data == "reimbursementAuthor" || data == "reimbursementResolver"){
                         if(reimb[data] == null){
                             td.innerText = null;
@@ -125,7 +134,7 @@ async function findAllRequest(){
                 }
                 reimbTbl.appendChild(row);
             }
-        }
+}
 }
 
 async function updateStatus(){
@@ -164,3 +173,4 @@ async function updateStatus(){
       console.log("Update status unsuccessful" +response.status);
     }
 }
+
